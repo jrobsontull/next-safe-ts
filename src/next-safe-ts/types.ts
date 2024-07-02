@@ -31,7 +31,27 @@ type CSPDirectives = {
   'report-uri'?: string[];
 };
 
+type ContentTypeDirectives = {
+  'X-Content-Type-Options'?: string[];
+};
+
+type FrameDirectives = {
+  'X-Frame-Options'?: string[];
+};
+
+type PermissionsPolicyDirectives = {
+  'Permissions-Policy'?: string[];
+};
+
+type ReferrerPolicyDirectives = {
+  'Referrer-Policy'?: string[];
+};
+
+type XSSProtectionDirectives = {
+  'X-XSS-Protection'?: string[];
+};
+
 type Header = {
   key: string;
-  value: string | string[];
+  value: string;
 };

@@ -15,4 +15,40 @@ function headerArrayToString<
     .join('\n');
 }
 
-export { headerArrayToString };
+function getHeaderObject(
+  key: string,
+  defaultValues: string[],
+  values?: string[],
+  extendDefaults = false
+): Header | null {
+  const header: Header = { key: key, value: '' };
+
+  if (!values) {
+    header['value'] = defaultValues.join(' ');
+    return header;
+  } else if (values.length === 0) {
+    return null;
+  }
+
+  const mergedValueArray = extendDefaults
+    ? [...defaultValues, ...values]
+    : values;
+
+  const uniqueValueArray = mergedValueArray.filter(
+    (value, index, self) => self.indexOf(value) === index
+  );
+
+  header['key'] = key;
+  header['value'] = uniqueValueArray.join(' ');
+  return header;
+}
+
+// typeguard for Header
+function isValidHeader(header: any): header is Header {
+  if (typeof header !== 'object') {
+    return false;
+  }
+  return 'key' in header && 'value' in header;
+}
+
+export { headerArrayToString, getHeaderObject, isValidHeader };

@@ -1,1 +1,1 @@
-export { getHeaders } from './next-safe-ts/headers';
+export { nextSafe } from './next-safe-ts/nextSafe';
